@@ -27,6 +27,7 @@ dependencies {
     compileOnly("io.micronaut:micronaut-http-validation")
     runtimeOnly("ch.qos.logback:logback-classic")
     implementation("io.micronaut:micronaut-validation")
+    implementation("com.google.code.gson:gson:2.8.5")
     implementation("com.squareup.okhttp3:okhttp:4.10.0")
     implementation("org.codehaus.groovy:groovy-json:3.0.11")
 
