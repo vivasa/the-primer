@@ -4,6 +4,8 @@ import java.io.File
 import java.io.IOException
 import java.util.HashMap
 import java.util.Map
+import javax.imageio.ImageIO
+
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.EncodeHintType
 import com.google.zxing.MultiFormatWriter
@@ -13,13 +15,26 @@ import com.google.zxing.client.j2se.MatrixToImageWriter
 import com.google.zxing.common.BitMatrix
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel
 
+import com.google.zxing.BinaryBitmap
+import com.google.zxing.ChecksumException
+import com.google.zxing.FormatException
+import com.google.zxing.LuminanceSource
+import com.google.zxing.NotFoundException
+import com.google.zxing.RGBLuminanceSource
+import com.google.zxing.Reader
+import com.google.zxing.Result
+import com.google.zxing.common.HybridBinarizer
+import com.google.zxing.qrcode.QRCodeReader
+import com.google.zxing.MultiFormatReader
+import com.google.zxing.client.j2se.BufferedImageLuminanceSource
+
 class QrGen {
 
   static void createQR(String data, String path,
                                 String charset,
                                 int width, int height)
         throws WriterException, IOException {
-    
+
     BitMatrix matrix = new MultiFormatWriter().encode(
             new String(data.getBytes(charset), charset),
             BarcodeFormat.QR_CODE, width, height)
@@ -42,8 +57,21 @@ class QrGen {
     // Encoding charset
     String charset = 'UTF-8'
 
-    createQR(data, path, charset, 200, 200)
+    Map<EncodeHintType, ErrorCorrectionLevel> hintMap = new HashMap<EncodeHintType, ErrorCorrectionLevel>();
+    hintMap.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.L);
+
+    //createQR(data, path, charset, 200, 200)
+    decodeQr(path, charset, hintMap)
     System.out.println('QR Code Generated!!! ')
+  }
+
+  static String decodeQr(String path, String charset, Map hintMap) {
+    BinaryBitmap binaryBitmap = new BinaryBitmap(new HybridBinarizer(
+        new BufferedImageLuminanceSource(
+            ImageIO.read(new FileInputStream(path)))))
+    Result qrCodeResult = new MultiFormatReader().decode(binaryBitmap, hintMap)
+    println("QRCode read is "+ qrCodeResult.getText())
+    return qrCodeResult.getText()
   }
 
 }
