@@ -70,7 +70,7 @@ class QrGem {
         new BufferedImageLuminanceSource(
             ImageIO.read(new FileInputStream(path)))))
     Result qrCodeResult = new MultiFormatReader().decode(binaryBitmap, hintMap)
-    println('QRCode read is ' + qrCodeResult.getText())
+
     return qrCodeResult.getText()
   }
 

@@ -6,6 +6,7 @@ import io.micronaut.http.HttpResponse
 import io.micronaut.http.MediaType
 import io.micronaut.http.annotation.Controller
 import io.micronaut.http.annotation.Get
+import io.micronaut.http.annotation.Body
 import io.micronaut.http.annotation.Post
 import io.micronaut.http.annotation.Produces
 import io.micronaut.http.annotation.QueryValue
@@ -30,6 +31,13 @@ public class GemController {
   @Produces(MediaType.APPLICATION_JSON)
   def readQR(HttpRequest request, @QueryValue String path) {
     return ['data': qrService.readFromFile(path, 'UTF-8')]
+  }
+
+  @Post('/qr')
+  @Produces(MediaType.APPLICATION_JSON)
+  def writeQR(@Body Map request){
+    qrService.writeToFile(request.data, request.path, 'UTF-8', 400, 400)
+    return ['result': 'SUCCESS']
   }
 
 }

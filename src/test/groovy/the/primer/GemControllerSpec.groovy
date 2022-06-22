@@ -24,13 +24,20 @@ class GemControllerSpec extends Specification {
   }
 
   void "read existing qr"() {
+    given:
+      def qrRequest = [data: 'My Qr Input', path: 'tmp/myinp.png']
     when:
-      HttpRequest request = HttpRequest.GET("/primer/api/v1.0/gems/qr?path=tmp/myqr.png")
+      HttpRequest request = HttpRequest.POST("/primer/api/v1.0/gems/qr",qrRequest)
       HttpResponse response = client.toBlocking().exchange(request, Argument.of(Map.class), Argument.of(JsonError))
     then:
       response.status().code == 200
-      response.body()['data'] == 'Data to be embedded in QR'
-
+      response.body()['result'] == 'SUCCESS'
+    when:
+      request = HttpRequest.GET("/primer/api/v1.0/gems/qr?path=${qrRequest.path}")
+      response = client.toBlocking().exchange(request, Argument.of(Map.class), Argument.of(JsonError))
+    then:
+      response.status().code == 200
+      response.body()['data'] == qrRequest.data
   }
 
 }
