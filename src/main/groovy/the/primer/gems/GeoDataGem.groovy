@@ -15,7 +15,7 @@ import okhttp3.Response
 /**
 * https://rapidapi.com/referential/api/referential/
 */
-class GeoApi {
+class GeoDataGem {
     static List fetchCitiesForState(String countryCode, String stateCode) {
         OkHttpClient client = new OkHttpClient();
 
@@ -33,6 +33,7 @@ class GeoApi {
         def cities = jsonSlurper.parseText(responseBody.string())
         println cities[0]
         println cities[1]
+        return cities
     }
 
     public static void main(String[] args){

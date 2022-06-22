@@ -14,14 +14,14 @@ import okhttp3.Response;
 
 public class Translator {
 
-  static void translate() {
+  static void translate(String input, String sourceLanguage, String targetLanguage) {
     try {
       OkHttpClient client = new OkHttpClient();
 
       RequestBody body = new FormBody.Builder()
-          .add("q", "Hello, world!")
-          .add("target", "te")
-          .add("source", "en")
+          .add("q", input)
+          .add("target", targetLanguage)
+          .add("source", sourceLanguage)
           .build();
 
       Request request = new Request.Builder()
@@ -37,6 +37,7 @@ public class Translator {
       Gson gson = new Gson();
       ResponseBody responseBody = response.body();
       Map result = gson.fromJson(responseBody.string(), Map.class);
+      System.out.println("Result " + result);
 
     } catch (Exception e) {
       e.printStackTrace(System.out);
@@ -81,6 +82,7 @@ public class Translator {
 
 
   public static void main(String[] args) {
-    detect("మహతి");
+    // detect("మహతి");
+    translate("Hello World!", "en", "hi");
   }
 }

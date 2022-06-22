@@ -28,9 +28,9 @@ import com.google.zxing.qrcode.QRCodeReader
 import com.google.zxing.MultiFormatReader
 import com.google.zxing.client.j2se.BufferedImageLuminanceSource
 
-class QrGen {
+class QrGem {
 
-  static void createQR(String data, String path,
+  static void writeQR(String data, String path,
                                 String charset,
                                 int width, int height)
         throws WriterException, IOException {
@@ -57,20 +57,20 @@ class QrGen {
     // Encoding charset
     String charset = 'UTF-8'
 
-    Map<EncodeHintType, ErrorCorrectionLevel> hintMap = new HashMap<EncodeHintType, ErrorCorrectionLevel>();
-    hintMap.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.L);
-
-    //createQR(data, path, charset, 200, 200)
-    decodeQr(path, charset, hintMap)
+    //writeQR(data, path, charset, 200, 200)
+    readQR(path, charset)
     System.out.println('QR Code Generated!!! ')
   }
 
-  static String decodeQr(String path, String charset, Map hintMap) {
+  static String readQR(String path, String charset) {
+    Map<EncodeHintType, ErrorCorrectionLevel> hintMap = new HashMap<EncodeHintType, ErrorCorrectionLevel>()
+    hintMap.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.L)
+
     BinaryBitmap binaryBitmap = new BinaryBitmap(new HybridBinarizer(
         new BufferedImageLuminanceSource(
             ImageIO.read(new FileInputStream(path)))))
     Result qrCodeResult = new MultiFormatReader().decode(binaryBitmap, hintMap)
-    println("QRCode read is "+ qrCodeResult.getText())
+    println('QRCode read is ' + qrCodeResult.getText())
     return qrCodeResult.getText()
   }
 
