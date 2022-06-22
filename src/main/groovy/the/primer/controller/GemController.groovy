@@ -29,7 +29,7 @@ public class GemController {
   @Get('/qr')
   @Produces(MediaType.APPLICATION_JSON)
   def readQR(HttpRequest request, @QueryValue String path) {
-    return qrService.readFromFile(path, 'UTF-8')
+    return ['data': qrService.readFromFile(path, 'UTF-8')]
   }
 
 }
