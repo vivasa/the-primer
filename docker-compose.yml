@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  the-primer:
+    image: public.ecr.aws/k4d8q0b2/the-primer:0.2
+    container_name: the-primer
+    hostname: the-primer
+    ports:
+      - 8080:8080
+    # env_file:
+    #   - ${EVOKE_ENV}
+    # volumes:
+    #   - ${DEPLOYMENT_ROOT}/cc/logs:/home/app/logs
+    #   - ${DEPLOYMENT_ROOT}/cc/config:/home/app/extconfig
+    # entrypoint: java -Dlogback.configurationFile=/home/app/extconfig/logback.xml -jar /home/app/application.jar
+    restart: always
+    tty: true
+    networks:
+      - vivasa
+
+networks:
+  vivasa:
+    name: vivasa-net

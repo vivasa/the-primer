@@ -1,12 +1,18 @@
-## Micronaut 3.1.0 Documentation
+# The Primer
 
-- [User Guide](https://docs.micronaut.io/3.1.0/guide/index.html)
-- [API Reference](https://docs.micronaut.io/3.1.0/api/index.html)
-- [Configuration Reference](https://docs.micronaut.io/3.1.0/guide/configurationreference.html)
-- [Micronaut Guides](https://guides.micronaut.io/index.html)
+## Overview
+
+This project is developed to help beginners with a starting point for coding their exercises
+
 ---
 
-## Feature http-client documentation
+## Prerequisites
+- JDK 11 or higher
+- Latest version of Docker and docker-compose 
 
-- [Micronaut HTTP Client documentation](https://docs.micronaut.io/latest/guide/index.html#httpClient)
-
+## Steps to install
+### Without docker, but JDK 11 is installed
+- Checkout the project to your local machine using `Git`
+- To build the project, run: `./gradlew build`
+- To launch the service, run: `./gradlew run`
+- To execute a specific gem as a standalone program, run: `./gradlew -PmainClass=<class fqn> run `

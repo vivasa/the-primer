@@ -19,13 +19,20 @@ import javax.validation.constraints.NotEmpty
 
 import the.primer.service.QrService
 
-@Controller('/primer/api/v1.0/gems')
+@Controller('/gems')
 public class GemController {
 
   private static final Logger logger = LoggerFactory.getLogger(GemController.class)
 
   @Inject
   QrService qrService
+
+  @Get("/")
+  @Produces(MediaType.APPLICATION_JSON)
+  def ping(){
+    def version = the.primer.Version?.getVersion()
+    return [version: version]
+  }
 
   @Get('/qr')
   @Produces(MediaType.APPLICATION_JSON)
