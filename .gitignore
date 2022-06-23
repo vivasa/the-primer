@@ -14,4 +14,4 @@ out/
 .factorypath
 .vscode/
 bin/
-tmp/
+tmp/*
