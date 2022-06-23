@@ -16,7 +16,7 @@ class ThePrimerSpec extends Specification {
     void 'test qr read and write'() {
         given:
         def data = "Data to be embedded in QR"
-        def path = "tmp/myqr.png"
+        def path = "build/tmp/myqr.png"
         def charset = 'UTF-8'
 
         when:

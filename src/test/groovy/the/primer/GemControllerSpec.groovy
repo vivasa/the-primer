@@ -25,16 +25,16 @@ class GemControllerSpec extends Specification {
 
   void "read existing qr"() {
     given:
-      def qrRequest = [data: 'My Qr Input', path: 'tmp/myinp.png']
+      def qrRequest = [data: 'My Qr Input', path: 'build/tmp/myinp.png']
     when:
-      HttpRequest request = HttpRequest.POST("/gems/qr",qrRequest)
-      HttpResponse response = client.toBlocking().exchange(request, Argument.of(Map.class), Argument.of(JsonError))
+      HttpRequest request = HttpRequest.POST('/gems/qr',qrRequest)
+      HttpResponse response = client.toBlocking().exchange(request, Argument.of(Map), Argument.of(JsonError))
     then:
       response.status().code == 200
       response.body()['result'] == 'SUCCESS'
     when:
       request = HttpRequest.GET("/gems/qr?path=${qrRequest.path}")
-      response = client.toBlocking().exchange(request, Argument.of(Map.class), Argument.of(JsonError))
+      response = client.toBlocking().exchange(request, Argument.of(Map), Argument.of(JsonError))
     then:
       response.status().code == 200
       response.body()['data'] == qrRequest.data
