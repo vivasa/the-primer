@@ -31,33 +31,28 @@ import com.google.zxing.client.j2se.BufferedImageLuminanceSource
 class QrGem {
 
   static void writeQR(String data, String path,
-                                String charset,
-                                int width, int height)
-        throws WriterException, IOException {
+    String charset, int width, int height)
+    throws WriterException, IOException {
 
     BitMatrix matrix = new MultiFormatWriter().encode(
-            new String(data.getBytes(charset), charset),
-            BarcodeFormat.QR_CODE, width, height)
+      new String(data.getBytes(charset), charset),
+      BarcodeFormat.QR_CODE, width, height)
 
-    MatrixToImageWriter.writeToFile(
-            matrix,
-            path.substring(path.lastIndexOf('.') + 1),
-            new File(path))
-        }
+    MatrixToImageWriter.writeToFile( matrix,
+      path.substring(path.lastIndexOf('.') + 1),
+      new File(path))
+  }
 
   public static void main(String[] args) {
     println 'I shall generate a QrCode of provided string data'
 
-    // The data that the QR code will contain
     String data = 'https://vivasa.in'
 
-    // The path where the image will get saved
-    String path = 'myqr.png'
+    String path = 'build/tmp/myqr.png'
 
-    // Encoding charset
     String charset = 'UTF-8'
 
-    //writeQR(data, path, charset, 200, 200)
+    writeQR(data, path, charset, 200, 200)
     readQR(path, charset)
     System.out.println('QR Code Generated!!! ')
   }

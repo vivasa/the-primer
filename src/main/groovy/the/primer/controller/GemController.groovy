@@ -37,12 +37,14 @@ public class GemController {
   @Get('/qr')
   @Produces(MediaType.APPLICATION_JSON)
   def readQR(HttpRequest request, @QueryValue String path) {
+    logger.debug("Reading QR at $path")
     return ['data': qrService.readFromFile(path, 'UTF-8')]
   }
 
   @Post('/qr')
   @Produces(MediaType.APPLICATION_JSON)
   def writeQR(@Body Map request){
+    logger.debug("Writing ${request.data} as QR to ${request.path}")
     qrService.writeToFile(request.data, request.path, 'UTF-8', 400, 400)
     return ['result': 'SUCCESS']
   }
