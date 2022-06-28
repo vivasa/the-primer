@@ -4,15 +4,25 @@ import org.apache.commons.codec.digest.DigestUtils
 
 class HashGem {
 
-  public static String md5Hash(String input)  {
-    String md5Hex = DigestUtils
-      .md5Hex(input).toUpperCase()
-    return md5Hex
+  public static String hash(String input, String algo)  {
+    String hash
+    if (algo.equalsIgnoreCase('MD5')) {
+      hash = DigestUtils
+        .md5Hex(input).toUpperCase()
+    } else if (algo.equalsIgnoreCase('SHA-1')) {
+      hash = DigestUtils.sha1Hex(input).toUpperCase()
+    } else if (algo.equalsIgnoreCase('SHA-256')) {
+      hash = DigestUtils.sha256Hex(input).toUpperCase()
+    }
+
+    return hash
   }
 
   public static void main(String[] args) {
-    String input = "A short String"
-    System.out.println("MD5 hash of $input is " + md5Hash(input))
+    String input = 'A short String'
+    System.out.println("MD5 hash of $input is " + hash(input, 'MD5'))
+    System.out.println("SHA-1 hash of $input is " + hash(input, 'SHA-1'))
+    System.out.println("SHA-256 hash of $input is " + hash(input, 'SHA-256'))
   }
 
 }
