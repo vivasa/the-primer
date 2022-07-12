@@ -15,12 +15,13 @@ To launch the service, run the following from the commandline:
 
 ---
 
-## Prerequisites
+## Installation
+### Prerequisites
 - To make best use of this project, a working setup of Docker (and docker-compose) is essential
 - JDK 11 or higher (not mandatory if docker is present)
 
-## Steps to install
-### With Docker and docker compose
+### Steps to install
+> With Docker and docker compose
 
 `docker-compose up -d`
 
