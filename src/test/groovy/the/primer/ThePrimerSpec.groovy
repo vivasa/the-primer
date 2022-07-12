@@ -26,4 +26,8 @@ class ThePrimerSpec extends Specification {
         QrGem.readQR(path, charset) == data
     }
 
+    void 'test hashing methods'() {
+        
+    }
+
 }

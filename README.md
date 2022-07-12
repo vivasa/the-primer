@@ -2,7 +2,16 @@
 
 ## Overview
 
-This project is developed to help beginners with a starting point for coding their exercises
+This project is developed to help beginners with a starting point for coding their exercises.
+This application can be run as a service and can be also launched as a script from the commandline.
+
+### Service
+
+To launch the service, run the following from the commandline:
+
+```
+./gradlew run
+```
 
 ---
 
