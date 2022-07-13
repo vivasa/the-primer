@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   the-primer:
-    image: public.ecr.aws/k4d8q0b2/the-primer:0.2
+    image: public.ecr.aws/vivasa/the-primer:latest
     container_name: the-primer
     hostname: the-primer
     ports:

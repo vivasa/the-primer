@@ -64,6 +64,6 @@ compileJava.dependsOn generateSources
 compileJava.source generateSources.outputs.files, sourceSets.main.java
 
 dockerBuild {
-    images = ["public.ecr.aws/k4d8q0b2/the-primer:${project.version}"]
+    images = ["public.ecr.aws/vivasa/the-primer:latest"]
 }
 

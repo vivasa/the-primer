@@ -30,3 +30,11 @@ To launch the service, run the following from the commandline:
 - To build the project, run: `./gradlew build`
 - To launch the service, run: `./gradlew run`
 - To execute a specific gem as a standalone program, run: `./gradlew -PmainClass=<class fqn> run `
+
+---
+## Developer Notes
+### Building the docker image locally
+`./gradlew dockerBuild -Pversion=<version number>`
+
+### Docker image location
+At present, the latest docker image of the project is accessible at `public.ecr.aws/vivasa/the-primer:latest`
