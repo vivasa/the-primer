@@ -4,7 +4,7 @@ import org.apache.commons.codec.digest.DigestUtils
 
 class HashGem {
 
-  public static String hash(String input, String algo)  {
+  public static Map hash(String input, String algo)  {
     String hash
     if (algo.equalsIgnoreCase('MD5')) {
       hash = DigestUtils
@@ -13,9 +13,11 @@ class HashGem {
       hash = DigestUtils.sha1Hex(input).toUpperCase()
     } else if (algo.equalsIgnoreCase('SHA-256')) {
       hash = DigestUtils.sha256Hex(input).toUpperCase()
+    } else {
+      hash = "Unknown Algo!!"
     }
 
-    return hash
+    return [hash: hash, algo: algo, input: input]
   }
 
   public static void main(String[] args) {

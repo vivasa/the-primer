@@ -18,6 +18,7 @@ import org.slf4j.LoggerFactory
 import javax.validation.constraints.NotEmpty
 
 import the.primer.service.QrService
+import the.primer.service.HashService
 
 @Controller('/gems')
 public class GemController {
@@ -26,6 +27,9 @@ public class GemController {
 
   @Inject
   QrService qrService
+
+  @Inject
+  HashService hashService
 
   @Get("/")
   @Produces(MediaType.APPLICATION_JSON)
@@ -48,5 +52,12 @@ public class GemController {
     qrService.writeToFile(request.data, request.path, 'UTF-8', 400, 400)
     return ['result': 'SUCCESS']
   }
+
+  @Get('/hash')
+  @Produces(MediaType.APPLICATION_JSON)
+  def readQR(@QueryValue String input, @QueryValue String algorithm) {
+    logger.debug("Hashing $input with $algorithm")
+    return ['data': hashService.hash(input, algorithm)]
+  }  
 
 }
