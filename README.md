@@ -31,6 +31,9 @@ To launch the service, run the following from the commandline:
 - To launch the service, run: `./gradlew run`
 - To execute a specific gem as a standalone program, run: `./gradlew -PmainClass=<class fqn> run `
 
+<!-- ### Windows Powershell -->
+
+<!-- `PS C:\> cat script.js | docker run --rm -i grafana/k6 run -` -->
 ---
 ## Developer Notes
 ### Building the docker image locally

@@ -14,10 +14,10 @@ class HashGem {
     } else if (algo.equalsIgnoreCase('SHA-256')) {
       hash = DigestUtils.sha256Hex(input).toUpperCase()
     } else {
-      hash = "Unknown Algo!!"
+      hash = "Unknown Algorithm!!"
     }
 
-    return [hash: hash, algo: algo, input: input]
+    return [hash: hash, algorithm: algo, input: input]
   }
 
   public static void main(String[] args) {
