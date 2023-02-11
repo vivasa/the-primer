@@ -32,6 +32,12 @@ public class GemController {
     return [version: version]
   }
 
+  /**
+   * Sample request: `curl --location --request GET 'http://localhost:8080/gems/qr?fileName=qrfile.png'`
+   * @param request
+   * @param fileName
+   * @return
+   */
   @Get('/qr')
   @Produces(MediaType.APPLICATION_JSON)
   def readQR(HttpRequest request, @QueryValue String fileName) {
@@ -39,11 +45,21 @@ public class GemController {
     return ['data': qrService.readFromFile(thePrimerConfig.qrstoragepath + fileName, 'UTF-8')]
   }
 
+  /**
+   * curl --location --request POST 'http://localhost:8080/gems/qr' \
+   --header 'Content-Type: application/json' \
+   --data-raw '{
+   "fileName":"file.png",
+   "data":"text-input-to-qr"
+   }'`
+   * @param request a Map like ["fileName":"abc.png", "data":"some text here"]
+   * @return
+   */
   @Post('/qr')
   @Produces(MediaType.APPLICATION_JSON)
   def writeQR(@Body Map request) {
     logger.debug("Writing ${request.data} as QR to ${request.fileName}")
-    qrService.writeToFile(request.data, thePrimerConfig.qrstoragepath + request.fileName, 'UTF-8', 400, 400)
+    qrService.writeToFile(request.data, thePrimerConfig.qrstoragepath + request.fileName, 'UTF-8')
     return ['result': 'SUCCESS']
   }
 
