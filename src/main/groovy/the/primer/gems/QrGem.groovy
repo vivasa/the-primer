@@ -1,46 +1,27 @@
 package the.primer.gems
 
-import java.io.File
-import java.io.IOException
-import java.util.HashMap
-import java.util.Map
-import javax.imageio.ImageIO
-
-import com.google.zxing.BarcodeFormat
-import com.google.zxing.EncodeHintType
-import com.google.zxing.MultiFormatWriter
-import com.google.zxing.NotFoundException
-import com.google.zxing.WriterException
+import com.google.zxing.*
+import com.google.zxing.client.j2se.BufferedImageLuminanceSource
 import com.google.zxing.client.j2se.MatrixToImageWriter
 import com.google.zxing.common.BitMatrix
+import com.google.zxing.common.HybridBinarizer
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel
 
-import com.google.zxing.BinaryBitmap
-import com.google.zxing.ChecksumException
-import com.google.zxing.FormatException
-import com.google.zxing.LuminanceSource
-import com.google.zxing.NotFoundException
-import com.google.zxing.RGBLuminanceSource
-import com.google.zxing.Reader
-import com.google.zxing.Result
-import com.google.zxing.common.HybridBinarizer
-import com.google.zxing.qrcode.QRCodeReader
-import com.google.zxing.MultiFormatReader
-import com.google.zxing.client.j2se.BufferedImageLuminanceSource
+import javax.imageio.ImageIO
 
 class QrGem {
 
   static void writeQR(String data, String path,
-    String charset, int width, int height)
-    throws WriterException, IOException {
+                      String charset, int width, int height)
+      throws WriterException, IOException {
 
     BitMatrix matrix = new MultiFormatWriter().encode(
-      new String(data.getBytes(charset), charset),
-      BarcodeFormat.QR_CODE, width, height)
+        new String(data.getBytes(charset), charset),
+        BarcodeFormat.QR_CODE, width, height)
 
-    MatrixToImageWriter.writeToFile( matrix,
-      path.substring(path.lastIndexOf('.') + 1),
-      new File(path))
+    MatrixToImageWriter.writeToFile(matrix,
+        path.substring(path.lastIndexOf('.') + 1),
+        new File(path))
   }
 
   public static void main(String[] args) {
@@ -65,7 +46,7 @@ class QrGem {
         new BufferedImageLuminanceSource(
             ImageIO.read(new FileInputStream(path)))))
     Result qrCodeResult = new MultiFormatReader().decode(binaryBitmap, hintMap)
-
+    println("Qr code read from the file is ${qrCodeResult.getText()}")
     return qrCodeResult.getText()
   }
 

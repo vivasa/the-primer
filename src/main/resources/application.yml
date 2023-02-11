@@ -1,3 +1,7 @@
 micronaut:
   application:
     name: thePrimer
+---
+primer:
+  config:
+    qrstoragepath: ${QR_STORAGE_PATH:`./build/tmp/`}
