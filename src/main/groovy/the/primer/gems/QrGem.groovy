@@ -14,7 +14,7 @@ import java.nio.file.Paths
  * To run this class as a standalone java file use the command below: <br /><br />
  * <b> From any Linux Shell: </b> `./gradlew run -PmainClass=the.primer.gems.QrGem` <br />
  * <b> From Windows Prompt: </b> `.\gradlew.bat run -PmainClass=the.primer.gems.QrGem`*/
-class QrGem {
+class QrGem extends Gem{
 
   static void writeQR(String data, String path,
                       String charset , int width, int height) throws WriterException, IOException {

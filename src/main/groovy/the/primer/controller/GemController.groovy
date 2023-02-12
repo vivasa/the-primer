@@ -48,10 +48,8 @@ public class GemController {
   /**
    * curl --location --request POST 'http://localhost:8080/gems/qr' \
    --header 'Content-Type: application/json' \
-   --data-raw '{
-   "fileName":"file.png",
-   "data":"text-input-to-qr"
-   }'`
+   --data-raw '{"fileName":"file.png",
+   "data":"text-input-to-qr"}'`
    * @param request a Map like ["fileName":"abc.png", "data":"some text here"]
    * @return
    */
@@ -67,7 +65,7 @@ public class GemController {
   @Produces(MediaType.APPLICATION_JSON)
   def readQR(@QueryValue String input, @QueryValue String algorithm) {
     logger.debug("Hashing $input with $algorithm")
-    return ['data': hashService.hash(input, algorithm)]
+    return ['data': [input: input, algorithm: algorithm, hash: hashService.hash(input, algorithm)]]
   }
 
 }

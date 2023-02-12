@@ -1,4 +1,4 @@
-package the.primer
+package the.primer.controller
 
 import io.micronaut.context.ApplicationContext
 import io.micronaut.core.type.Argument
@@ -10,6 +10,8 @@ import io.micronaut.runtime.server.EmbeddedServer
 import spock.lang.AutoCleanup
 import spock.lang.Shared
 import spock.lang.Specification
+
+import java.nio.charset.StandardCharsets
 
 class GemControllerSpec extends Specification {
 
@@ -42,21 +44,21 @@ class GemControllerSpec extends Specification {
 
   void "test hash algorithms"() {
     given:
-    def input = "TestInputString"
-
+    def input = "श्रीमाता श्रीमहाराज्ञी श्रीमत्-सिंहासनेश्वरी"
+    String encodedInput = URLEncoder.encode(input, StandardCharsets.UTF_8.toString());
     when:
     //def uri = UriBuilder.of("/gems/hash?input=$input&algorithm=$algo")
 
-    HttpRequest request = HttpRequest.GET("/gems/hash?input=$input&algorithm=$algo")
+    HttpRequest request = HttpRequest.GET("/gems/hash?algorithm=${algo}&input=${encodedInput}")
     HttpResponse<Map> response = client.toBlocking().exchange(request, Argument.of(Map.class), Argument.of(JsonError))
     then:
     response.status().code == 200
     response.body()['data']['hash'] == hash
     where:
     algo      | hash
-    "MD5"     | "EB30F6BDEE70979FA6060A41EA73117D"
-    "SHA-1"   | "A29F2D7698613CB6CE4058B5DA2B7E2ACFF05C49"
-    "SHA-256" | "2E62D8E7229854FD8CD0B26D25F36F1C0963FF6B271CA40DF8E8D035FBED79B0"
+    "MD5"     | "4027194CCC56EBAAE8463107D757F756"
+    "SHA-1"   | "D875C0BF9BC820C0970B4DE1FDA2E3939738DA8E"
+    "SHA-256" | "185015366232932EEE3F7488F1A344D259B97B58F4A7CB2C08C3AD316312EA13"
   }
 
 }
