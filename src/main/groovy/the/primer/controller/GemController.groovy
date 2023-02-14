@@ -45,8 +45,17 @@ public class GemController {
     return ['data': qrService.readFromFile(thePrimerConfig.qrstoragepath + fileName, 'UTF-8')]
   }
 
+  @Get("/qr/image/{fileName}")
+  @Produces(MediaType.APPLICATION_JSON)
+  public Map<String, String> getImage(String fileName) {
+    File file = new File(thePrimerConfig.qrstoragepath, fileName)
+    byte[] imageBytes = file.bytes
+    String base64Image = Base64.getEncoder().encodeToString(imageBytes)
+    return [image: base64Image]
+  }
+
   /**
-   * curl --location --request POST 'http://localhost:8080/gems/qr' \
+   * `curl --location --request POST 'http://localhost:8080/gems/qr' \
    --header 'Content-Type: application/json' \
    --data-raw '{"fileName":"file.png",
    "data":"text-input-to-qr"}'`
@@ -57,7 +66,7 @@ public class GemController {
   @Produces(MediaType.APPLICATION_JSON)
   def writeQR(@Body Map request) {
     logger.debug("Writing ${request.data} as QR to ${request.fileName}")
-    qrService.writeToFile(request.data, thePrimerConfig.qrstoragepath + request.fileName, 'UTF-8')
+    qrService.writeToFile(request.data, thePrimerConfig.qrstoragepath + request.fileName)
     return ['result': 'SUCCESS']
   }
 

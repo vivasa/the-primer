@@ -12,9 +12,8 @@ class QrService {
   ThePrimerConfig thePrimerConfig
 
   def writeToFile(String data, String path, String charset = 'UTF-8',
-                  int width = 0, int height = 0) {
-    QrGem.writeQR(data, path, charset, width > 0 ?: thePrimerConfig.qrFileWidth,
-        height > 0 ?: thePrimerConfig.qrFileHeight)
+                  int width = thePrimerConfig.qrFileWidth, int height = thePrimerConfig.qrFileHeight) {
+    QrGem.writeQR(data, path, charset, width, height)
   }
 
   def readFromFile(String path, String charset = 'UTF-8') {

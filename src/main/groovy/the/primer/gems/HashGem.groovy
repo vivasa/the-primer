@@ -40,10 +40,11 @@ class HashGem extends Gem{
   }
 
   public static void main(String[] args) {
-    String input = URLEncoder.encode('श्रीमाता श्रीमहाराज्ञी श्रीमत्-सिंहासनेश्वरी', "UTF-32")
-    System.out.println("MD5 hash of $input is " + hash(input, 'MD5'))
-    System.out.println("SHA-1 hash of $input is " + hash(input, 'SHA-1'))
-    System.out.println("SHA-256 hash of $input is " + hash(input, 'SHA-256'))
+    String input = "Hashing is done for indexing and locating items in databases " +
+        "because it is easier to find the shorter hash value than the longer string"
+    System.out.println("MD5 hash of [$input] is: " + hash(input, 'MD5'))
+    System.out.println("SHA-1 hash of [$input] is: " + hash(input, 'SHA-1'))
+    System.out.println("SHA-256 hash of [$input] is: " + hash(input, 'SHA-256'))
   }
 
 }

@@ -1,15 +1,19 @@
 package the.primer.service
 
-import io.micronaut.context.ApplicationContext
+
 import io.micronaut.test.extensions.spock.annotation.MicronautTest
 import jakarta.inject.Inject
 import spock.lang.Specification
+import the.primer.ThePrimerConfig
 
 @MicronautTest
 class QrServiceSpec extends Specification {
 
   @Inject
   QrService qrService
+
+  @Inject
+  ThePrimerConfig thePrimerConfig
 
   /**
    * Command to execute this test <br />
@@ -18,7 +22,7 @@ class QrServiceSpec extends Specification {
   void "service spec"() {
     given:
     def data = this.class.name
-    def fileName = this.class.name + ".png"
+    def fileName = thePrimerConfig.qrstoragepath + this.class.name + ".png"
 
     when:
     qrService.writeToFile(data, fileName)
