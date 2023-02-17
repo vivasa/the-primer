@@ -1,6 +1,8 @@
 micronaut:
   application:
     name: thePrimer
+  server:
+    port: 8080
   http:
     encoding: utf-8
 ---

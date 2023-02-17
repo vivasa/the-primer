@@ -72,7 +72,7 @@ public class GemController {
 
   @Get('/hash')
   @Produces(MediaType.APPLICATION_JSON)
-  def readQR(@QueryValue String input, @QueryValue String algorithm) {
+  def generateHash(@QueryValue String input, @QueryValue String algorithm) {
     logger.debug("Hashing $input with $algorithm")
     return ['data': [input: input, algorithm: algorithm, hash: hashService.hash(input, algorithm)]]
   }

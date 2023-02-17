@@ -26,6 +26,9 @@ class HashGemSpec extends Specification {
     HashGem hash2 = new HashGem("A hash function is a mathematical function that converts any digital data into an output string with a fixed number of characters", algorithm)
     expect:
     hash1.hashedValue.length() == hash2.hashedValue.length()
+    hash1.algorithm == "SHA-256"
+    and:
+    hash1.plainData == "Hashing is the one-way act of converting data into the output"
 
   }
 

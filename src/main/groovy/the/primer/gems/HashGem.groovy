@@ -2,13 +2,21 @@ package the.primer.gems
 
 import org.apache.commons.codec.digest.DigestUtils
 
-class HashGem extends Gem{
+class HashGem extends Gem {
 
   String plainData
   String algorithm
   String hashedValue
 
-  public HashGem() {
+  public static enum ALGORITHM {
+    MD5("MD5"),
+    SHA1("SHA-1"),
+    SHA256("SHA-256")
+  }
+
+  /**
+   * Default constructor is made private so that there is only one way of creating object*/
+  private HashGem() {
 
   }
 
@@ -40,8 +48,7 @@ class HashGem extends Gem{
   }
 
   public static void main(String[] args) {
-    String input = "Hashing is done for indexing and locating items in databases " +
-        "because it is easier to find the shorter hash value than the longer string"
+    String input = "Hashing is done for indexing and locating items in databases " + "because it is easier to find the shorter hash value than the longer string"
     System.out.println("MD5 hash of [$input] is: " + hash(input, 'MD5'))
     System.out.println("SHA-1 hash of [$input] is: " + hash(input, 'SHA-1'))
     System.out.println("SHA-256 hash of [$input] is: " + hash(input, 'SHA-256'))
