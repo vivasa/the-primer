@@ -1,8 +1,8 @@
 package the.primer.gems;
 
-import the.primer.samples.Car;
-import the.primer.samples.InventoryManager;
-import the.primer.samples.Truck;
+import the.primer.samples.transport.Car;
+import the.primer.samples.transport.InventoryManager;
+import the.primer.samples.transport.Truck;
 
 import java.util.Scanner;
 
