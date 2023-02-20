@@ -1,4 +1,4 @@
-package the.primer.samples;
+package the.primer.samples.transport;
 
 public class Truck extends Vehicle {
     private int loadCapacity;
