@@ -47,11 +47,18 @@ class QrServiceSpec extends Specification {
 
     when:
     def wifiQrFile = qrService.generateWifiQr(ssid, password)
+    then: "I expect that wifiQrFile is usable for connecting to Wifi Network"
+    (new File(wifiQrFile)).exists() // A file exists at the returned location
+
+    when:
+    def qr = qrService.readFromFile(wifiQrFile)
     then:
-    //How do you verify if the file is generated?
-    //How do you verity that wifiQrFile is usable?
-    //How do you verity that wifiQrFile indeed allows users to connect to their wifi ?
-    true
+    qr != null // When the file is scanned for QR, we find some text and not null or error
+    qr.startsWith("WIFI:T:") // Start of the string contains expected format
+    qr.endsWith(";H:true;") // Ends with right format
+    qr.contains(ssid) // SSID is found as a part of the string
+    qr.contains(password) // password is found
+    qr == "WIFI:T:WPA;S:${ssid};P:${password};H:true;" // We know the precise string that meets the requirements
 
   }
 }

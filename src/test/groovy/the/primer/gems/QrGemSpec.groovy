@@ -13,6 +13,7 @@ class QrGemSpec extends Specification {
     and: "read the qr file again"
     def textReadFromQR = QrGem.readQR(path)
 
+    //What needs to be proven (प्रतिज्ञ)
     then: "The returned text should match the input"
     textReadFromQR == text
   }

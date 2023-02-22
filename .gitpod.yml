@@ -1,7 +1,7 @@
 tasks:
   - name: Terminal 1
     before: echo 'Initializing the project the-primer'
-    init: ./gradlew build -x tests
+    init: ./gradlew build -x test
   - name: Terminal 2
     before: echo 'Launching the Service'
     init: ./gradlew run

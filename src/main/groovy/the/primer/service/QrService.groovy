@@ -29,4 +29,19 @@ class QrService {
     writeToFile(wifiString, fileName)
     return fileName
   }
+
+  def String generateSMSQr(long phone, String message) {
+    def smsString = "SMSTO:${phone}:${message}"
+    String fileName = thePrimerConfig.qrstoragepath + hashService.hash(smsString, "MD5") + ".png"
+    writeToFile(smsString, fileName)
+    return fileName
+  }
+
+  def String generateEmailQr(String mailTo, String subject){
+    //mailto:support@qrexplore.com?subject=Blog Post
+  }
+
+  def String generateVCardQr(String firstName, String lastName, long phoneNumber, String email){
+    //MECARD:N:Gumo,Forrest;TEL:11115551212;EMAIL:forrestgump@example.com;;
+  }
 }
