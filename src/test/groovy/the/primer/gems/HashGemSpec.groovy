@@ -10,11 +10,14 @@ class HashGemSpec extends Specification {
         "and that it has not been tampered with since even a small change in the message " +
         "will create an entirely different hash"
     def algorithm = "MD5"
+
     when:
     def hash = HashGem.hash(text, algorithm)
+
     then: "Some non null string is generated"
     hash != null
     !hash.equalsIgnoreCase("")
+
     and: "It is not the same as input"
     !hash.equalsIgnoreCase(text)
   }

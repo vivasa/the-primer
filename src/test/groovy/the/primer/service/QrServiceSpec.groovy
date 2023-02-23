@@ -41,10 +41,6 @@ class QrServiceSpec extends Specification {
    *
    */
   void "share wifi credentials through QR"() {
-    given:
-    def ssid = "My Wifi SSID"
-    def password = "secret123!"
-
     when:
     def wifiQrFile = qrService.generateWifiQr(ssid, password)
     then: "I expect that wifiQrFile is usable for connecting to Wifi Network"
@@ -54,11 +50,18 @@ class QrServiceSpec extends Specification {
     def qr = qrService.readFromFile(wifiQrFile)
     then:
     qr != null // When the file is scanned for QR, we find some text and not null or error
+    and:
     qr.startsWith("WIFI:T:") // Start of the string contains expected format
+    and:
     qr.endsWith(";H:true;") // Ends with right format
+    and:
     qr.contains(ssid) // SSID is found as a part of the string
     qr.contains(password) // password is found
     qr == "WIFI:T:WPA;S:${ssid};P:${password};H:true;" // We know the precise string that meets the requirements
 
+    where:
+    ssid | password
+    "My Wifi SSID" | "secret123!"
+    "My ssid" | "my secret"
   }
 }
