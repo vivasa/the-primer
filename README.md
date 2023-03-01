@@ -13,6 +13,10 @@ To launch the service, run the following from the commandline:
 ./gradlew run
 ```
 
+For Windows the command to launch the service is 
+```
+.\gradlew.bat run
+```
 ---
 
 ## Installation
