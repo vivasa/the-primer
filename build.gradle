@@ -23,21 +23,22 @@ dependencies {
     implementation("io.micronaut:micronaut-http-client")
     implementation("io.micronaut.groovy:micronaut-runtime-groovy")
     implementation("javax.annotation:javax.annotation-api")
-    implementation 'junit:junit:4.13.1'
-    compileOnly("io.micronaut:micronaut-http-validation")
+    implementation("io.micronaut:micronaut-http-validation")
     runtimeOnly("ch.qos.logback:logback-classic")
     implementation("io.micronaut:micronaut-validation")
-    implementation("com.google.code.gson:gson:2.8.5")
-    implementation("com.google.zxing:core:3.3.0")
-    implementation("com.google.zxing:javase:3.3.0")
+    implementation 'io.micronaut.security:micronaut-security'
+    implementation 'software.amazon.awssdk:aws-sdk-java:2.20.46'
+    implementation('com.google.code.gson:gson:2.10.1')
+    implementation('com.google.zxing:core:3.5.1')
+    implementation('com.google.zxing:javase:3.5.1')
     implementation("com.squareup.okhttp3:okhttp:4.10.0")
-    implementation("org.codehaus.groovy:groovy-json:3.0.11")
+    implementation('org.codehaus.groovy:groovy-json:3.0.16')
     implementation("commons-codec:commons-codec:1.15")
-    testImplementation("org.gebish:geb-spock:5.1")
-    testImplementation("org.seleniumhq.selenium:htmlunit-driver:3.62.0")
-    testImplementation("org.seleniumhq.selenium:selenium-chrome-driver:4.3.0")
-    testImplementation("org.seleniumhq.selenium:selenium-safari-driver:4.3.0")
-    testImplementation("org.seleniumhq.selenium:selenium-firefox-driver:4.3.0")
+    testImplementation('org.gebish:geb-spock:7.0')
+    testImplementation('org.seleniumhq.selenium:htmlunit-driver:4.8.0')
+    testImplementation('org.seleniumhq.selenium:selenium-chrome-driver:4.8.1')
+    testImplementation('org.seleniumhq.selenium:selenium-safari-driver:4.8.1')
+    testImplementation('org.seleniumhq.selenium:selenium-firefox-driver:4.8.1')
 }
 
 application {

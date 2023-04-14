@@ -5,7 +5,21 @@ micronaut:
     port: 8080
   http:
     encoding: utf-8
+  security:
+    enabled: false
+    token:
+      jwt:
+        enabled: true
+        signatures:
+          secret:
+            generator:
+              secret: "rottentomatoes#$@!"
 ---
 primer:
   config:
     qrstoragepath: ${QR_STORAGE_PATH:`./build/tmp/`}
+    s3:
+      access_key: ${S3_IAM_KEY}
+      secret_key: ${S3_IAM_CODE}
+      region: ${S3_REGION}
+      bucket-name: ${S3_BUCKET_NAME}
