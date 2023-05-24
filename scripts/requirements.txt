@@ -1,0 +1,6 @@
+openai
+langchain
+unstructured
+tiktoken
+tabulate
+pdf2image
